@@ -5,10 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using ProjetCaveVin.Model.Connexion;
 //using ProjetCaveVin.Model.Tables;
-using ProjetCaveVin.Model.Classes;
 
 
-namespace ProjetCaveVin.Model.Classes
+namespace ProjetCaveVin.Classes
 {
     public class HistoriqueDeplacement
     {

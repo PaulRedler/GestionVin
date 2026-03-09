@@ -1,0 +1,45 @@
+﻿@page "/login-admin"
+@inject NavigationManager Navigation
+
+<div class="vh-100 d-flex flex-column" style="background-color: #F8F8F8;">
+    <div style="height: 6px; background: linear-gradient(90deg, #000000 0%, #B8860B 100%);"></div>
+
+    <div class="container flex-grow-1 d-flex align-items-center justify-content-center">
+        <div class="card shadow-sm p-5" style="width: 420px; border-radius: 20px; border: 1px solid #DDD; background-color: white;">
+            <div class="card-body p-0">
+
+                <div class="text-center mb-4">
+                    <h2 class="fw-bold mb-1" style="color: #333; font-size: 26px;">Administration</h2>
+                    <p class="text-muted" style="font-size: 13px;">Accès sécurisé Grand Monarque</p>
+                </div>
+
+                <hr class="my-4" style="color: #EEE; opacity: 1;">
+
+                <div class="d-grid gap-3 mt-4">
+
+                    <button class="btn py-2 fw-semibold text-white shadow-sm"
+                            style="background-color: #B8860B; border-radius: 10px; height: 48px; font-size: 15px;"
+                            @onclick='() => Navigation.NavigateTo("/login/Administrateur")'>
+                        Se connecter
+                    </button>
+
+                    <button class="btn py-2 fw-semibold text-white shadow-sm"
+                            style="background-color: #555; border-radius: 10px; height: 48px; font-size: 15px;"
+                            @onclick='() => Navigation.NavigateTo("/inscription")'>
+                        Créer un compte administrateur
+                    </button>
+
+                    <button class="btn btn-link mt-2 text-decoration-none fw-normal"
+                            style="color: #B8860B; font-size: 14px;"
+                            @onclick='() => Navigation.NavigateTo("/")'>
+                        ← Retour
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+}

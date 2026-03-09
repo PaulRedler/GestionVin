@@ -1,14 +1,58 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\REDLER\\source\\repos\\ProjetCaveVin\\",
+  "WorkspaceRootPath": "C:\\Users\\REDLER\\ProjetCaveVinBlazor\\GestionVin\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D3838D1F-A51F-4FDD-9F2F-AFF50E417C2C}|ProjetCaveVin\\ProjetCaveVin.csproj|c:\\users\\redler\\source\\repos\\projetcavevin\\projetcavevin\\projetcavevin.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{D3838D1F-A51F-4FDD-9F2F-AFF50E417C2C}|ProjetCaveVin\\ProjetCaveVin.csproj|solutionrelative:projetcavevin\\projetcavevin.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{DFD1C521-2F42-7ED8-53B4-08680948C091}|ProjetCaveVin\\ProjetCaveVin.csproj|c:\\users\\redler\\projetcavevinblazor\\gestionvin\\projetcavevin\\components\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DFD1C521-2F42-7ED8-53B4-08680948C091}|ProjetCaveVin\\ProjetCaveVin.csproj|solutionrelative:projetcavevin\\components\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D3838D1F-A51F-4FDD-9F2F-AFF50E417C2C}|ProjetCaveVin\\ProjetCaveVin.csproj|c:\\users\\redler\\source\\repos\\projetcavevin\\projetcavevin\\components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D3838D1F-A51F-4FDD-9F2F-AFF50E417C2C}|ProjetCaveVin\\ProjetCaveVin.csproj|solutionrelative:projetcavevin\\components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{DFD1C521-2F42-7ED8-53B4-08680948C091}|ProjetCaveVin\\ProjetCaveVin.csproj|c:\\users\\redler\\projetcavevinblazor\\gestionvin\\projetcavevin\\components\\pages\\mainpage.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DFD1C521-2F42-7ED8-53B4-08680948C091}|ProjetCaveVin\\ProjetCaveVin.csproj|solutionrelative:projetcavevin\\components\\pages\\mainpage.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DFD1C521-2F42-7ED8-53B4-08680948C091}|ProjetCaveVin\\ProjetCaveVin.csproj|c:\\users\\redler\\projetcavevinblazor\\gestionvin\\projetcavevin\\components\\pages\\roleaccess.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DFD1C521-2F42-7ED8-53B4-08680948C091}|ProjetCaveVin\\ProjetCaveVin.csproj|solutionrelative:projetcavevin\\components\\pages\\roleaccess.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DFD1C521-2F42-7ED8-53B4-08680948C091}|ProjetCaveVin\\ProjetCaveVin.csproj|c:\\users\\redler\\projetcavevinblazor\\gestionvin\\projetcavevin\\components\\pages\\login.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DFD1C521-2F42-7ED8-53B4-08680948C091}|ProjetCaveVin\\ProjetCaveVin.csproj|solutionrelative:projetcavevin\\components\\pages\\login.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DFD1C521-2F42-7ED8-53B4-08680948C091}|ProjetCaveVin\\ProjetCaveVin.csproj|c:\\users\\redler\\projetcavevinblazor\\gestionvin\\projetcavevin\\repositories\\zonerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DFD1C521-2F42-7ED8-53B4-08680948C091}|ProjetCaveVin\\ProjetCaveVin.csproj|solutionrelative:projetcavevin\\repositories\\zonerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DFD1C521-2F42-7ED8-53B4-08680948C091}|ProjetCaveVin\\ProjetCaveVin.csproj|c:\\users\\redler\\projetcavevinblazor\\gestionvin\\projetcavevin\\repositories\\utilisateurrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DFD1C521-2F42-7ED8-53B4-08680948C091}|ProjetCaveVin\\ProjetCaveVin.csproj|solutionrelative:projetcavevin\\repositories\\utilisateurrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DFD1C521-2F42-7ED8-53B4-08680948C091}|ProjetCaveVin\\ProjetCaveVin.csproj|c:\\users\\redler\\projetcavevinblazor\\gestionvin\\projetcavevin\\repositories\\rolerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DFD1C521-2F42-7ED8-53B4-08680948C091}|ProjetCaveVin\\ProjetCaveVin.csproj|solutionrelative:projetcavevin\\repositories\\rolerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DFD1C521-2F42-7ED8-53B4-08680948C091}|ProjetCaveVin\\ProjetCaveVin.csproj|c:\\users\\redler\\projetcavevinblazor\\gestionvin\\projetcavevin\\repositories\\rarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DFD1C521-2F42-7ED8-53B4-08680948C091}|ProjetCaveVin\\ProjetCaveVin.csproj|solutionrelative:projetcavevin\\repositories\\rarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DFD1C521-2F42-7ED8-53B4-08680948C091}|ProjetCaveVin\\ProjetCaveVin.csproj|c:\\users\\redler\\projetcavevinblazor\\gestionvin\\projetcavevin\\repositories\\hdrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DFD1C521-2F42-7ED8-53B4-08680948C091}|ProjetCaveVin\\ProjetCaveVin.csproj|solutionrelative:projetcavevin\\repositories\\hdrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DFD1C521-2F42-7ED8-53B4-08680948C091}|ProjetCaveVin\\ProjetCaveVin.csproj|c:\\users\\redler\\projetcavevinblazor\\gestionvin\\projetcavevin\\repositories\\bouteillerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DFD1C521-2F42-7ED8-53B4-08680948C091}|ProjetCaveVin\\ProjetCaveVin.csproj|solutionrelative:projetcavevin\\repositories\\bouteillerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DFD1C521-2F42-7ED8-53B4-08680948C091}|ProjetCaveVin\\ProjetCaveVin.csproj|c:\\users\\redler\\projetcavevinblazor\\gestionvin\\projetcavevin\\components\\pages\\bottles.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DFD1C521-2F42-7ED8-53B4-08680948C091}|ProjetCaveVin\\ProjetCaveVin.csproj|solutionrelative:projetcavevin\\components\\pages\\bottles.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DFD1C521-2F42-7ED8-53B4-08680948C091}|ProjetCaveVin\\ProjetCaveVin.csproj|c:\\users\\redler\\projetcavevinblazor\\gestionvin\\projetcavevin\\components\\pages\\stats.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DFD1C521-2F42-7ED8-53B4-08680948C091}|ProjetCaveVin\\ProjetCaveVin.csproj|solutionrelative:projetcavevin\\components\\pages\\stats.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DFD1C521-2F42-7ED8-53B4-08680948C091}|ProjetCaveVin\\ProjetCaveVin.csproj|c:\\users\\redler\\projetcavevinblazor\\gestionvin\\projetcavevin\\classes\\session.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DFD1C521-2F42-7ED8-53B4-08680948C091}|ProjetCaveVin\\ProjetCaveVin.csproj|solutionrelative:projetcavevin\\classes\\session.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,36 +62,179 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ProjetCaveVin",
-              "DocumentMoniker": "C:\\Users\\REDLER\\source\\repos\\ProjetCaveVin\\ProjetCaveVin\\ProjetCaveVin.csproj",
-              "RelativeDocumentMoniker": "ProjetCaveVin\\ProjetCaveVin.csproj",
-              "ToolTip": "C:\\Users\\REDLER\\source\\repos\\ProjetCaveVin\\ProjetCaveVin\\ProjetCaveVin.csproj",
-              "RelativeToolTip": "ProjetCaveVin\\ProjetCaveVin.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-03-09T07:22:00.794Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Home.razor",
-              "DocumentMoniker": "C:\\Users\\REDLER\\source\\repos\\ProjetCaveVin\\ProjetCaveVin\\Components\\Pages\\Home.razor",
-              "RelativeDocumentMoniker": "ProjetCaveVin\\Components\\Pages\\Home.razor",
-              "ToolTip": "C:\\Users\\REDLER\\source\\repos\\ProjetCaveVin\\ProjetCaveVin\\Components\\Pages\\Home.razor",
-              "RelativeToolTip": "ProjetCaveVin\\Components\\Pages\\Home.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "NavMenu.razor",
+              "DocumentMoniker": "C:\\Users\\REDLER\\ProjetCaveVinBlazor\\GestionVin\\ProjetCaveVin\\Components\\Layout\\NavMenu.razor",
+              "RelativeDocumentMoniker": "ProjetCaveVin\\Components\\Layout\\NavMenu.razor",
+              "ToolTip": "C:\\Users\\REDLER\\ProjetCaveVinBlazor\\GestionVin\\ProjetCaveVin\\Components\\Layout\\NavMenu.razor*",
+              "RelativeToolTip": "ProjetCaveVin\\Components\\Layout\\NavMenu.razor*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-03-09T07:09:49.902Z",
+              "WhenOpened": "2026-03-09T13:23:49.802Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "RoleAccess.razor",
+              "DocumentMoniker": "C:\\Users\\REDLER\\ProjetCaveVinBlazor\\GestionVin\\ProjetCaveVin\\Components\\Pages\\RoleAccess.razor",
+              "RelativeDocumentMoniker": "ProjetCaveVin\\Components\\Pages\\RoleAccess.razor",
+              "ToolTip": "C:\\Users\\REDLER\\ProjetCaveVinBlazor\\GestionVin\\ProjetCaveVin\\Components\\Pages\\RoleAccess.razor",
+              "RelativeToolTip": "ProjetCaveVin\\Components\\Pages\\RoleAccess.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-09T13:22:41.619Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "RoleRepository.cs",
+              "DocumentMoniker": "C:\\Users\\REDLER\\ProjetCaveVinBlazor\\GestionVin\\ProjetCaveVin\\Repositories\\RoleRepository.cs",
+              "RelativeDocumentMoniker": "ProjetCaveVin\\Repositories\\RoleRepository.cs",
+              "ToolTip": "C:\\Users\\REDLER\\ProjetCaveVinBlazor\\GestionVin\\ProjetCaveVin\\Repositories\\RoleRepository.cs",
+              "RelativeToolTip": "ProjetCaveVin\\Repositories\\RoleRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-09T13:20:38.026Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "RARepository.cs",
+              "DocumentMoniker": "C:\\Users\\REDLER\\ProjetCaveVinBlazor\\GestionVin\\ProjetCaveVin\\Repositories\\RARepository.cs",
+              "RelativeDocumentMoniker": "ProjetCaveVin\\Repositories\\RARepository.cs",
+              "ToolTip": "C:\\Users\\REDLER\\ProjetCaveVinBlazor\\GestionVin\\ProjetCaveVin\\Repositories\\RARepository.cs",
+              "RelativeToolTip": "ProjetCaveVin\\Repositories\\RARepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-09T13:20:37.062Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "HDRepository.cs",
+              "DocumentMoniker": "C:\\Users\\REDLER\\ProjetCaveVinBlazor\\GestionVin\\ProjetCaveVin\\Repositories\\HDRepository.cs",
+              "RelativeDocumentMoniker": "ProjetCaveVin\\Repositories\\HDRepository.cs",
+              "ToolTip": "C:\\Users\\REDLER\\ProjetCaveVinBlazor\\GestionVin\\ProjetCaveVin\\Repositories\\HDRepository.cs",
+              "RelativeToolTip": "ProjetCaveVin\\Repositories\\HDRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-09T13:20:36.228Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "BouteilleRepository.cs",
+              "DocumentMoniker": "C:\\Users\\REDLER\\ProjetCaveVinBlazor\\GestionVin\\ProjetCaveVin\\Repositories\\BouteilleRepository.cs",
+              "RelativeDocumentMoniker": "ProjetCaveVin\\Repositories\\BouteilleRepository.cs",
+              "ToolTip": "C:\\Users\\REDLER\\ProjetCaveVinBlazor\\GestionVin\\ProjetCaveVin\\Repositories\\BouteilleRepository.cs",
+              "RelativeToolTip": "ProjetCaveVin\\Repositories\\BouteilleRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-09T13:20:35.189Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ZoneRepository.cs",
+              "DocumentMoniker": "C:\\Users\\REDLER\\ProjetCaveVinBlazor\\GestionVin\\ProjetCaveVin\\Repositories\\ZoneRepository.cs",
+              "RelativeDocumentMoniker": "ProjetCaveVin\\Repositories\\ZoneRepository.cs",
+              "ToolTip": "C:\\Users\\REDLER\\ProjetCaveVinBlazor\\GestionVin\\ProjetCaveVin\\Repositories\\ZoneRepository.cs",
+              "RelativeToolTip": "ProjetCaveVin\\Repositories\\ZoneRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-09T13:20:01.457Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Bottles.razor",
+              "DocumentMoniker": "C:\\Users\\REDLER\\ProjetCaveVinBlazor\\GestionVin\\ProjetCaveVin\\Components\\Pages\\Bottles.razor",
+              "RelativeDocumentMoniker": "ProjetCaveVin\\Components\\Pages\\Bottles.razor",
+              "ToolTip": "C:\\Users\\REDLER\\ProjetCaveVinBlazor\\GestionVin\\ProjetCaveVin\\Components\\Pages\\Bottles.razor",
+              "RelativeToolTip": "ProjetCaveVin\\Components\\Pages\\Bottles.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEgAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-09T13:16:58.169Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MainPage.razor",
+              "DocumentMoniker": "C:\\Users\\REDLER\\ProjetCaveVinBlazor\\GestionVin\\ProjetCaveVin\\Components\\Pages\\MainPage.razor",
+              "RelativeDocumentMoniker": "ProjetCaveVin\\Components\\Pages\\MainPage.razor",
+              "ToolTip": "C:\\Users\\REDLER\\ProjetCaveVinBlazor\\GestionVin\\ProjetCaveVin\\Components\\Pages\\MainPage.razor",
+              "RelativeToolTip": "ProjetCaveVin\\Components\\Pages\\MainPage.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-09T13:12:14.51Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "UtilisateurRepository.cs",
+              "DocumentMoniker": "C:\\Users\\REDLER\\ProjetCaveVinBlazor\\GestionVin\\ProjetCaveVin\\Repositories\\UtilisateurRepository.cs",
+              "RelativeDocumentMoniker": "ProjetCaveVin\\Repositories\\UtilisateurRepository.cs",
+              "ToolTip": "C:\\Users\\REDLER\\ProjetCaveVinBlazor\\GestionVin\\ProjetCaveVin\\Repositories\\UtilisateurRepository.cs",
+              "RelativeToolTip": "ProjetCaveVin\\Repositories\\UtilisateurRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAF0AAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-09T11:05:47.757Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Stats.razor",
+              "DocumentMoniker": "C:\\Users\\REDLER\\ProjetCaveVinBlazor\\GestionVin\\ProjetCaveVin\\Components\\Pages\\Stats.razor",
+              "RelativeDocumentMoniker": "ProjetCaveVin\\Components\\Pages\\Stats.razor",
+              "ToolTip": "C:\\Users\\REDLER\\ProjetCaveVinBlazor\\GestionVin\\ProjetCaveVin\\Components\\Pages\\Stats.razor",
+              "RelativeToolTip": "ProjetCaveVin\\Components\\Pages\\Stats.razor",
+              "ViewState": "AgIAAIoAAAAAAAAAAAAAAAIAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-09T13:13:44.853Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Session.cs",
+              "DocumentMoniker": "C:\\Users\\REDLER\\ProjetCaveVinBlazor\\GestionVin\\ProjetCaveVin\\Classes\\Session.cs",
+              "RelativeDocumentMoniker": "ProjetCaveVin\\Classes\\Session.cs",
+              "ToolTip": "C:\\Users\\REDLER\\ProjetCaveVinBlazor\\GestionVin\\ProjetCaveVin\\Classes\\Session.cs",
+              "RelativeToolTip": "ProjetCaveVin\\Classes\\Session.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-09T11:07:49.644Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Login.razor",
+              "DocumentMoniker": "C:\\Users\\REDLER\\ProjetCaveVinBlazor\\GestionVin\\ProjetCaveVin\\Components\\Pages\\Login.razor",
+              "RelativeDocumentMoniker": "ProjetCaveVin\\Components\\Pages\\Login.razor",
+              "ToolTip": "C:\\Users\\REDLER\\ProjetCaveVinBlazor\\GestionVin\\ProjetCaveVin\\Components\\Pages\\Login.razor",
+              "RelativeToolTip": "ProjetCaveVin\\Components\\Pages\\Login.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGUAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-09T11:05:26.352Z",
               "EditorCaption": ""
             }
           ]

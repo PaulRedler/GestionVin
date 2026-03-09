@@ -1,0 +1,264 @@
+﻿@page "/stats"
+@inject BouteilleRepository BouteilleRepository
+@inject HDRepository HDRepository
+<PageTitle>Statistiques et stock</PageTitle>
+
+<div class="page-card">
+    <div class="page-header">
+        <div>
+            <h1>Gestion des stocks</h1>
+            <div class="page-subtitle">Portage de `StatistiquesGrandMonarqueWindow`.</div>
+        </div>
+        <div class="action-row">
+            <button class="secondary-btn" @onclick="LoadData">Actualiser</button>
+        </div>
+    </div>
+
+    <div class="tabs-row">
+        <button class="tab-btn @(ActiveTab == "stock" ? "active" : "")" @onclick='() => SetActiveTab("stock")'>Gestion du stock</button>
+        <button class="tab-btn @(ActiveTab == "zones" ? "active" : "")" @onclick='() => SetActiveTab("zones")'>Zones et valeurs</button>
+        <button class="tab-btn @(ActiveTab == "history" ? "active" : "")" @onclick='() => SetActiveTab("history")'>Historique</button>
+    </div>
+
+    @if (ActiveTab == "stock")
+    {
+        <div class="two-column">
+            <section>
+                <div class="field-label">Recherche (nom ou emplacement)</div>
+                <input class="input-field" @bind="SearchText" @bind:event="oninput" />
+
+                <table class="table-shell" style="margin-top: 0.65rem;">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Vin</th>
+                            <th>Millesime</th>
+                            <th>Emplacement</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (Bouteille bouteille in FilteredBouteilles)
+                        {
+                            <tr class="@(SelectedBouteille?.Id == bouteille.Id ? "record-selected" : string.Empty)"
+                                @onclick="@(() => SelectBouteille(bouteille))">
+                                <td>@bouteille.Id</td>
+                                <td>@bouteille.Libelle</td>
+                                <td>@bouteille.Millesime</td>
+                                <td>@bouteille.Code_Emplacement</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </section>
+
+            <section>
+                <div class="field-label">Bouteille selectionnee</div>
+                <div class="page-card" style="box-shadow:none; padding: 0.75rem;">
+                    <div><strong>@(SelectedBouteille?.Libelle ?? "---")</strong></div>
+                    <div>Actuel: @(SelectedBouteille?.Code_Emplacement ?? "---")</div>
+                </div>
+
+                <div class="field-label" style="margin-top: 0.65rem;">Nouvel ID emplacement</div>
+                <input class="input-field" @bind="TargetEmplacementIdText" />
+
+                <div class="status-msg @(StatusSuccess ? "ok-msg" : string.Empty)">@StatusMessage</div>
+                <div class="action-row">
+                    <button class="primary-btn" @onclick="MoveBottle">Confirmer deplacement</button>
+                </div>
+            </section>
+        </div>
+    }
+    else if (ActiveTab == "zones")
+    {
+        <table class="table-shell">
+            <thead>
+                <tr>
+                    <th>Zone / Emplacement</th>
+                    <th>Quantite</th>
+                    <th>Valeur totale</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (StatistiqueZone zone in StatsZones)
+                {
+                    <tr>
+                        <td>@zone.NomZone</td>
+                        <td>@zone.Quantite</td>
+                        <td>@zone.ValeurTotale.ToString("C2")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <table class="table-shell">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Date</th>
+                    <th>Utilisateur</th>
+                    <th>Bouteille</th>
+                    <th>Emplacement</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (HistoriqueDeplacement historique in Historique)
+                {
+                    <tr>
+                        <td>@historique.Id</td>
+                        <td>@historique.DateDeplacement.ToString("dd/MM/yyyy HH:mm")</td>
+                        <td>@historique.IdUtilisateur</td>
+                        <td>@historique.IdBouteille</td>
+                        <td>@historique.IdEmplacement</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
+
+@code
+{
+    protected string ActiveTab { get; set; } = "stock";
+
+    protected List<Bouteille> AllBouteilles { get; set; } = [];
+    protected List<Bouteille> FilteredBouteilles { get; set; } = [];
+    protected List<HistoriqueDeplacement> Historique { get; set; } = [];
+    protected List<StatistiqueZone> StatsZones { get; set; } = [];
+
+    protected Bouteille? SelectedBouteille { get; set; }
+    protected string TargetEmplacementIdText { get; set; } = string.Empty;
+    protected string StatusMessage { get; set; } = string.Empty;
+    protected bool StatusSuccess { get; set; }
+
+    private string _searchText = string.Empty;
+    protected string SearchText
+    {
+        get => _searchText;
+        set
+        {
+            _searchText = value;
+            ApplySearch();
+        }
+    }
+
+    protected override void OnInitialized()
+    {
+
+        LoadData();
+    }
+
+    protected void SetActiveTab(string tabName)
+    {
+        ActiveTab = tabName;
+    }
+
+    protected void SelectBouteille(Bouteille bouteille)
+    {
+        SelectedBouteille = bouteille;
+    }
+
+    protected void LoadData()
+    {
+        try
+        {
+            AllBouteilles = BouteilleRepository.GetAllBouteillesAvecEmplacement();
+            Historique = HDRepository.GetAllHistoriqueDeplacements();
+            BuildZoneStats();
+            ApplySearch();
+            StatusSuccess = true;
+            StatusMessage = "Donnees chargees.";
+        }
+        catch (Exception ex)
+        {
+            StatusSuccess = false;
+            StatusMessage = $"Erreur chargement: {ex.Message}";
+            AllBouteilles = [];
+            FilteredBouteilles = [];
+            Historique = [];
+            StatsZones = [];
+        }
+    }
+
+    private void BuildZoneStats()
+    {
+        StatsZones = AllBouteilles
+            .Where(b => !string.IsNullOrWhiteSpace(b.Code_Emplacement))
+            .GroupBy(b => b.Code_Emplacement)
+            .Select(g => new StatistiqueZone
+            {
+                NomZone = g.Key,
+                Quantite = g.Count(),
+                ValeurTotale = g.Sum(x => x.Prix)
+            })
+            .OrderBy(z => z.NomZone)
+            .ToList();
+    }
+
+    private void ApplySearch()
+    {
+        if (string.IsNullOrWhiteSpace(SearchText))
+        {
+            FilteredBouteilles = AllBouteilles.ToList();
+            return;
+        }
+
+        FilteredBouteilles = AllBouteilles
+            .Where(b =>
+                b.Libelle.Contains(SearchText, StringComparison.OrdinalIgnoreCase) ||
+                (b.Code_Emplacement?.Contains(SearchText, StringComparison.OrdinalIgnoreCase) ?? false))
+            .ToList();
+    }
+
+    protected void MoveBottle()
+    {
+        if (SelectedBouteille is null)
+        {
+            StatusSuccess = false;
+            StatusMessage = "Veuillez selectionner une bouteille.";
+            return;
+        }
+
+        if (Session.CurrentUser is null)
+        {
+            StatusSuccess = false;
+            StatusMessage = "Vous devez etre connecte pour deplacer une bouteille.";
+            return;
+        }
+
+        if (!int.TryParse(TargetEmplacementIdText, out int targetId) || targetId <= 0)
+        {
+            StatusSuccess = false;
+            StatusMessage = "ID emplacement invalide.";
+            return;
+        }
+
+        try
+        {
+            HDRepository.EnregistrerMouvement(
+                SelectedBouteille.Id,
+                targetId,
+                Session.CurrentUser.id_utilisateur);
+
+            StatusSuccess = true;
+            StatusMessage = $"Bouteille deplacee vers l'emplacement {targetId}.";
+            TargetEmplacementIdText = string.Empty;
+            LoadData();
+        }
+        catch (Exception ex)
+        {
+            StatusSuccess = false;
+            StatusMessage = $"Erreur deplacement: {ex.Message}";
+        }
+    }
+
+    protected sealed class StatistiqueZone
+    {
+        public string NomZone { get; set; } = string.Empty;
+        public int Quantite { get; set; }
+        public decimal ValeurTotale { get; set; }
+    }
+}
+
+ 

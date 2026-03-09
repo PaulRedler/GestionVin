@@ -1,0 +1,120 @@
+﻿@page "/login/{SelectedRole}"
+@inject NavigationManager Navigation
+@inject UtilisateurRepository UserRepo
+
+<div class="vh-100 d-flex flex-column" style="background-color: #EFEDEB;">
+    <div style="height: 6px; background: linear-gradient(90deg, #1A1A1A 0%, #B8860B 100%);"></div>
+
+    <div class="container flex-grow-1 d-flex align-items-center justify-content-center">
+        <div class="card shadow-lg p-4" style="width: 380px; border-radius: 22px; border: 2px solid #B8860B; background-color: white;">
+            <div class="card-body px-4">
+
+                <div class="text-center mb-1">
+                    <h2 class="fw-semibold mb-0" style="color: #2F2F2F; font-size: 26px;">Connexion</h2>
+                    <p class="fw-bold mt-1" style="color: #B8860B; font-size: 13px; letter-spacing: 1px;">GRAND MONARQUE</p>
+                </div>
+
+                <div class="mt-4">
+                    <div class="mb-3">
+                        <label class="form-label small fw-bold text-muted">Adresse email</label>
+                        <input type="email" class="form-control border-secondary-subtle py-2"
+                               style="background-color: #FAFAFA;"
+                               @bind="Email" placeholder="nom@exemple.com" />
+                    </div>
+
+                    <div class="mb-2">
+                        <label class="form-label small fw-bold text-muted">Mot de passe</label>
+                        <input type="password" class="form-control border-secondary-subtle py-2"
+                               style="background-color: #FAFAFA;"
+                               @bind="Password" placeholder="••••••••" />
+                    </div>
+
+                    <div class="mb-4" style="min-height: 20px;">
+                        @if (!string.IsNullOrEmpty(Message))
+                        {
+                            <span class="text-danger small fw-bold">@Message</span>
+                        }
+                    </div>
+
+                    <div class="d-grid gap-3">
+                        <button class="btn py-2 fw-bold text-white shadow-sm"
+                                style="background-color: #B8860B; border-radius: 23px; font-size: 15px;"
+                                @onclick="HandleLogin">
+                            CONNEXION
+                        </button>
+
+                        <button class="btn btn-link text-decoration-none fw-bold"
+                                style="color: #B8860B; border: 1px solid #B8860B; border-radius: 19px; font-size: 14px;"
+                                @onclick="HandleRetour">
+                            RETOUR
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter] public string SelectedRole { get; set; }
+
+    private string Email { get; set; }
+    private string Password { get; set; }
+    private string Message { get; set; }
+
+    private async Task HandleLogin()
+    {
+        // On appelle le repository (Note: GetByCredentials doit être statique ou injecté)
+        var user = UserRepo.GetByCredentials(Email, Password);
+
+        if (user != null)
+        {
+            // Vérification du rôle par rapport au paramètre de l'URL
+            if (user.Role.Nom != SelectedRole)
+            {
+                Message = $"Le rôle ne correspond pas au rôle choisi : {SelectedRole}.";
+                return;
+            }
+
+            // Gestion de la session (similaire à votre WPF Session.CurrentUser)
+             Session.CurrentUser = user;
+
+            Message = $"Connexion réussie ({user.Role.Nom})";
+
+            // Redirection selon le rôle
+            switch (user.Role.Nom)
+            {
+                case "Administrateur":
+                    Navigation.NavigateTo("/main");
+                    break;
+                case "Serveur":
+                    Navigation.NavigateTo("/serveur");
+                    break;
+                case "Sommelier":
+                    Navigation.NavigateTo("/sommelier");
+                    break;
+                default:
+                    Message = "Rôle inconnu.";
+                    break;
+            }
+        }
+        else
+        {
+            Message = "Email ou mot de passe incorrect.";
+        }
+    }
+
+    private void HandleRetour()
+    {
+        string role = SelectedRole?.Trim().ToLower();
+
+        if (role == "administrateur")
+        {
+            Navigation.NavigateTo("/login-admin");
+        }
+        else
+        {
+            Navigation.NavigateTo("/role-access");
+        }
+    }
+}

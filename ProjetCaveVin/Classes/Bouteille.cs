@@ -1,11 +1,10 @@
-﻿using ProjetCaveVin.Model.Connexion;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProjetCaveVin.Model.Classes
+namespace ProjetCaveVin.Classes
 {
     public class Bouteille
     {

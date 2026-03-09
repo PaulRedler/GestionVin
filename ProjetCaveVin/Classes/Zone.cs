@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProjetCaveVin.Model.Classes
+namespace ProjetCaveVin.Classes
 {
     public class Zone
     {

@@ -1,0 +1,99 @@
+﻿@page "/l"
+@inject NavigationManager Navigation
+@inject RARepository RaRepo
+
+<div class="container-fluid vh-100 d-flex align-items-center justify-content-center bg-light">
+    <div class="row shadow-lg overflow-hidden" style="width: 900px; height: 550px; border-radius: 15px;">
+        
+        <div class="col-4 d-flex align-items-center justify-content-center text-center text-white" 
+             style="background: linear-gradient(135deg, #000000 0%, #422509 100%);">
+            <div>
+                <h2 class="fw-light m-0" style="letter-spacing: 5px;">GRAND</h2>
+                <h1 class="fw-bold" style="color: #B8860B; font-size: 2.5rem;">MONARQUE</h1>
+                <p class="text-secondary small mt-2 fw-bold text-uppercase">Gestion de cave</p>
+            </div>
+        </div>
+
+        <div class="col-8 bg-white p-5 d-flex flex-column justify-content-center">
+            
+            <h2 class="fw-bold text-dark mb-1">Connexion</h2>
+            <p class="text-muted mb-5">Veuillez sélectionner votre profil d'accès</p>
+
+            <label class="small fw-bold text-muted mb-2 text-uppercase">Qui êtes-vous ?</label>
+            <div class="btn-group w-100 mb-4">
+                <button type="button" class="btn @(SelectedRoleName == "Sommelier" ? "btn-dark" : "btn-outline-secondary") fw-bold py-2" 
+                        @onclick='() => ExecuteSelectRole("Sommelier")'>Sommelier</button>
+                
+                <button type="button" class="btn @(SelectedRoleName == "Serveur" ? "btn-dark" : "btn-outline-secondary") fw-bold py-2" 
+                        @onclick='() => ExecuteSelectRole("Serveur")'>Serveur</button>
+                
+                <button type="button" class="btn @(SelectedRoleName == "Administrateur" ? "btn-dark" : "btn-outline-secondary") fw-bold py-2" 
+                        @onclick='() => ExecuteSelectRole("Administrateur")'>Admin</button>
+            </div>
+
+            <label class="small fw-bold text-muted mb-2 text-uppercase">Mot de passe</label>
+            <input type="password" class="form-control form-control-lg mb-2 bg-light" 
+                   style="height: 45px;" @bind="Password" placeholder="••••••••">
+
+            <div class="text-danger small mb-4" style="height: 20px;">
+                @Message
+            </div>
+
+            <button class="btn w-100 fw-bold py-3 text-white rounded-pill shadow-sm" 
+                    style="background-color: #B8860B;" @onclick="ExecuteValidateRole">
+                SE CONNECTER
+            </button>
+
+            <p class="text-muted small mt-4 text-center">
+                Rôle sélectionné : <span class="fw-bold text-dark">@SelectedRoleName</span>
+            </p>
+            
+        </div>
+    </div>
+</div>
+
+@code {
+    private string SelectedRoleName { get; set; }
+    private string Password { get; set; }
+    private string Message { get; set; }
+        // Équivalent de ExecuteSelectRole
+    private void ExecuteSelectRole(string roleName)
+    {
+        SelectedRoleName = roleName;
+        Message = "";
+    }
+
+    // Équivalent de ExecuteValidateRole
+    private void ExecuteValidateRole()
+    {
+        if (string.IsNullOrEmpty(SelectedRoleName))
+        {
+            Message = "Veuillez d'abord sélectionner un rôle.";
+            return;
+        }
+
+        if (string.IsNullOrEmpty(Password))
+        {
+            Message = "Veuillez entrer le mot de passe.";
+            return;
+        }
+
+        // Appel au Repository (on garde votre logique métier)
+        if (RaRepo.CheckPassword(SelectedRoleName, Password))
+        {
+            if (SelectedRoleName == "Administrateur")
+            {
+                Navigation.NavigateTo("/login-admin");
+            }
+            else
+            {
+                Navigation.NavigateTo($"/login/{SelectedRoleName}");
+            }
+        }
+        else
+        {
+            Message = "Mot de passe incorrect.";
+            Password = ""; // Reset du mot de passe en cas d'erreur
+        }
+    }
+}

@@ -1,0 +1,151 @@
+﻿@page "/bottles"
+@inject ZoneRepository ZoneRepository
+@inject BouteilleRepository BouteilleRepository
+@inject NavigationManager Navigation
+<PageTitle>Gestion des bouteilles</PageTitle>
+
+<div class="page-card">
+    <div class="page-header">
+        <div>
+            <h1>Liste des bouteilles</h1>
+            <div class="page-subtitle">Portage de `GestionBouteilleWindow`.</div>
+        </div>
+        <div class="action-row">
+            <button class="secondary-btn" @onclick="Reload">Recharger</button>
+            <button class="ghost-btn" @onclick="ResetFilters">Reinitialiser les filtres</button>
+        </div>
+    </div>
+
+    <div class="field-label">Filtre par libelle</div>
+    <input class="input-field" placeholder="Ex: Bordeaux, Champagne..." @bind="LibelleFilter" @bind:event="oninput" />
+
+    <div class="field-label" style="margin-top: 0.7rem;">Zones</div>
+    <div class="zone-pills">
+        <button class="zone-pill @(string.IsNullOrWhiteSpace(SelectedZone) ? "active" : "")" @onclick="() => SelectZone(null)">Toutes</button>
+        @foreach (Zone zone in Zones)
+        {
+            <button class="zone-pill @(string.Equals(SelectedZone, zone.Code, StringComparison.OrdinalIgnoreCase) ? "active" : "")"
+                    @onclick="@(() => SelectZone(zone.Code))">
+                @zone.Code
+            </button>
+        }
+    </div>
+
+    @if (!string.IsNullOrWhiteSpace(Message))
+    {
+        <div class="status-msg">@Message</div>
+    }
+
+    <div class="bottle-grid">
+        @foreach (Bouteille bouteille in FilteredBouteilles)
+        {
+            <article class="bottle-card">
+                <img src="@ResolvePhoto(bouteille.Photo)" alt="@bouteille.Libelle" />
+                <h3>@bouteille.Libelle</h3>
+                <div><strong>@bouteille.Prix.ToString("F2") EUR</strong></div>
+                <div>Type: @bouteille.Type</div>
+                <div>Zone: @bouteille.Code</div>
+                <div>Emplacement: @bouteille.Code_Emplacement</div>
+            </article>
+        }
+    </div>
+</div>
+
+@code
+{
+    protected List<Bouteille> AllBouteilles { get; set; } = [];
+    protected List<Bouteille> FilteredBouteilles { get; set; } = [];
+    protected List<Zone> Zones { get; set; } = [];
+    protected string? SelectedZone { get; set; }
+    protected string Message { get; set; } = string.Empty;
+
+    private string _libelleFilter = string.Empty;
+    protected string LibelleFilter
+    {
+        get => _libelleFilter;
+        set
+        {
+            _libelleFilter = value;
+            ApplyFilters();
+        }
+    }
+
+    protected override void OnInitialized()
+    {
+        Reload();
+    }
+
+    protected void Reload()
+    {
+        try
+        {
+            Zones = ZoneRepository.GetAllZones();
+            AllBouteilles = BouteilleRepository.GetAllBouteilles();
+            ApplyFilters();
+            Message = $"{FilteredBouteilles.Count} bouteille(s) affichee(s).";
+        }
+        catch (Exception ex)
+        {
+            Message = $"Erreur chargement: {ex.Message}";
+            AllBouteilles = [];
+            FilteredBouteilles = [];
+            Zones = [];
+        }
+    }
+
+    protected void SelectZone(string? zoneCode)
+    {
+        SelectedZone = zoneCode;
+        ApplyFilters();
+    }
+
+    protected void ResetFilters()
+    {
+        SelectedZone = null;
+        LibelleFilter = string.Empty;
+        ApplyFilters();
+    }
+
+    private void ApplyFilters()
+    {
+        IEnumerable<Bouteille> query = AllBouteilles;
+
+        if (!string.IsNullOrWhiteSpace(SelectedZone))
+        {
+            query = query.Where(b => string.Equals(b.Code, SelectedZone, StringComparison.OrdinalIgnoreCase));
+        }
+
+        if (!string.IsNullOrWhiteSpace(LibelleFilter))
+        {
+            query = query.Where(b => b.Libelle.Contains(LibelleFilter, StringComparison.OrdinalIgnoreCase));
+        }
+
+        FilteredBouteilles = query.ToList();
+    }
+
+    protected static string ResolvePhoto(string? photo)
+    {
+        if (string.IsNullOrWhiteSpace(photo))
+        {
+            return "/images/vinrouge.png";
+        }
+
+        if (Uri.TryCreate(photo, UriKind.Absolute, out _))
+        {
+            return photo;
+        }
+
+        if (photo.StartsWith('/'))
+        {
+            return photo;
+        }
+
+        if (photo.StartsWith("images/", StringComparison.OrdinalIgnoreCase))
+        {
+            return "/" + photo;
+        }
+
+        return "/images/vinrouge.png";
+    }
+}
+

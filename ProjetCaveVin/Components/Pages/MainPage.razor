@@ -1,0 +1,52 @@
+﻿@page "/"
+@inject NavigationManager Navigation   
+<PageTitle>Accueil admin</PageTitle>
+
+<div class="page-card">
+    <h1>Bienvenue dans la cave Grand Monarque</h1>
+    <p class="page-subtitle">Equivalent de `MainWindow` (acces admin).</p>
+
+    <div class="dashboard-grid">
+        <a class="dashboard-tile" href="/bottles">
+            <h3>Gestion des bouteilles</h3>
+            <p>Filtrer par zone/libelle et consulter le stock actuel.</p>
+            <img @onclick="GoToBottles"src="/images/imagegestionvin.png" alt="Gestion des vins" />
+        </a>
+        <a class="dashboard-tile" href="/stats">
+            <h3>Statistiques et deplacements</h3>
+            <p>Visualiser les valeurs par emplacement et deplacer les bouteilles.</p>
+            <img @onclick="GoToStat"src="/images/imagestatvin.png" alt="Statistiques des vins" />
+        </a>
+    </div>
+
+    <div class="action-row" style="margin-top: 1rem;">
+        <button class="ghost-btn" @onclick="BackToRoleAccess">Retour a la selection de role</button>
+    </div>
+</div>
+
+@code{
+    protected override void OnInitialized()
+    {
+        // if (Session.CurrentUser.Role.Nom!="Administrateur")
+        // {
+        //     Navigation.NavigateTo("/role-access");
+        // }
+    }
+
+    protected void BackToRoleAccess()
+    {
+        Session.Logout();
+        Navigation.NavigateTo("/role-access");
+    }
+    private void GoToStat()
+    {
+        Navigation.NavigateTo("/stats");
+
+    }
+    private void GoToBottles()
+    {
+        Navigation.NavigateTo("/bottles");
+    }
+}
+
+
