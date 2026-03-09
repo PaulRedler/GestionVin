@@ -1,0 +1,58 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\REDLER\\source\\repos\\ProjetCaveVin\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D3838D1F-A51F-4FDD-9F2F-AFF50E417C2C}|ProjetCaveVin\\ProjetCaveVin.csproj|c:\\users\\redler\\source\\repos\\projetcavevin\\projetcavevin\\projetcavevin.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{D3838D1F-A51F-4FDD-9F2F-AFF50E417C2C}|ProjetCaveVin\\ProjetCaveVin.csproj|solutionrelative:projetcavevin\\projetcavevin.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D3838D1F-A51F-4FDD-9F2F-AFF50E417C2C}|ProjetCaveVin\\ProjetCaveVin.csproj|c:\\users\\redler\\source\\repos\\projetcavevin\\projetcavevin\\components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D3838D1F-A51F-4FDD-9F2F-AFF50E417C2C}|ProjetCaveVin\\ProjetCaveVin.csproj|solutionrelative:projetcavevin\\components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ProjetCaveVin",
+              "DocumentMoniker": "C:\\Users\\REDLER\\source\\repos\\ProjetCaveVin\\ProjetCaveVin\\ProjetCaveVin.csproj",
+              "RelativeDocumentMoniker": "ProjetCaveVin\\ProjetCaveVin.csproj",
+              "ToolTip": "C:\\Users\\REDLER\\source\\repos\\ProjetCaveVin\\ProjetCaveVin\\ProjetCaveVin.csproj",
+              "RelativeToolTip": "ProjetCaveVin\\ProjetCaveVin.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-03-09T07:22:00.794Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Home.razor",
+              "DocumentMoniker": "C:\\Users\\REDLER\\source\\repos\\ProjetCaveVin\\ProjetCaveVin\\Components\\Pages\\Home.razor",
+              "RelativeDocumentMoniker": "ProjetCaveVin\\Components\\Pages\\Home.razor",
+              "ToolTip": "C:\\Users\\REDLER\\source\\repos\\ProjetCaveVin\\ProjetCaveVin\\Components\\Pages\\Home.razor",
+              "RelativeToolTip": "ProjetCaveVin\\Components\\Pages\\Home.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-09T07:09:49.902Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

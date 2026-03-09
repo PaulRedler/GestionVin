@@ -1,0 +1,109 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\REDLER\\ProjetCaveVinBlazor\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{DFD1C521-2F42-7ED8-53B4-08680948C091}|ProjetCaveVin\\ProjetCaveVin.csproj|c:\\users\\redler\\projetcavevinblazor\\projetcavevin\\pages\\weather.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DFD1C521-2F42-7ED8-53B4-08680948C091}|ProjetCaveVin\\ProjetCaveVin.csproj|solutionrelative:projetcavevin\\pages\\weather.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DFD1C521-2F42-7ED8-53B4-08680948C091}|ProjetCaveVin\\ProjetCaveVin.csproj|c:\\users\\redler\\projetcavevinblazor\\projetcavevin\\pages\\notfound.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DFD1C521-2F42-7ED8-53B4-08680948C091}|ProjetCaveVin\\ProjetCaveVin.csproj|solutionrelative:projetcavevin\\pages\\notfound.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DFD1C521-2F42-7ED8-53B4-08680948C091}|ProjetCaveVin\\ProjetCaveVin.csproj|c:\\users\\redler\\projetcavevinblazor\\projetcavevin\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DFD1C521-2F42-7ED8-53B4-08680948C091}|ProjetCaveVin\\ProjetCaveVin.csproj|solutionrelative:projetcavevin\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DFD1C521-2F42-7ED8-53B4-08680948C091}|ProjetCaveVin\\ProjetCaveVin.csproj|c:\\users\\redler\\projetcavevinblazor\\projetcavevin\\pages\\counter.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DFD1C521-2F42-7ED8-53B4-08680948C091}|ProjetCaveVin\\ProjetCaveVin.csproj|solutionrelative:projetcavevin\\pages\\counter.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DFD1C521-2F42-7ED8-53B4-08680948C091}|ProjetCaveVin\\ProjetCaveVin.csproj|c:\\users\\redler\\projetcavevinblazor\\projetcavevin\\projetcavevin.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{DFD1C521-2F42-7ED8-53B4-08680948C091}|ProjetCaveVin\\ProjetCaveVin.csproj|solutionrelative:projetcavevin\\projetcavevin.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Weather.razor",
+              "DocumentMoniker": "C:\\Users\\REDLER\\ProjetCaveVinBlazor\\ProjetCaveVin\\Pages\\Weather.razor",
+              "RelativeDocumentMoniker": "ProjetCaveVin\\Pages\\Weather.razor",
+              "ToolTip": "C:\\Users\\REDLER\\ProjetCaveVinBlazor\\ProjetCaveVin\\Pages\\Weather.razor",
+              "RelativeToolTip": "ProjetCaveVin\\Pages\\Weather.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-09T07:26:13.621Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "NotFound.razor",
+              "DocumentMoniker": "C:\\Users\\REDLER\\ProjetCaveVinBlazor\\ProjetCaveVin\\Pages\\NotFound.razor",
+              "RelativeDocumentMoniker": "ProjetCaveVin\\Pages\\NotFound.razor",
+              "ToolTip": "C:\\Users\\REDLER\\ProjetCaveVinBlazor\\ProjetCaveVin\\Pages\\NotFound.razor",
+              "RelativeToolTip": "ProjetCaveVin\\Pages\\NotFound.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-09T07:26:13.576Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Counter.razor",
+              "DocumentMoniker": "C:\\Users\\REDLER\\ProjetCaveVinBlazor\\ProjetCaveVin\\Pages\\Counter.razor",
+              "RelativeDocumentMoniker": "ProjetCaveVin\\Pages\\Counter.razor",
+              "ToolTip": "C:\\Users\\REDLER\\ProjetCaveVinBlazor\\ProjetCaveVin\\Pages\\Counter.razor",
+              "RelativeToolTip": "ProjetCaveVin\\Pages\\Counter.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-09T07:26:13.388Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ProjetCaveVin.csproj",
+              "DocumentMoniker": "C:\\Users\\REDLER\\ProjetCaveVinBlazor\\ProjetCaveVin\\ProjetCaveVin.csproj",
+              "RelativeDocumentMoniker": "ProjetCaveVin\\ProjetCaveVin.csproj",
+              "ToolTip": "C:\\Users\\REDLER\\ProjetCaveVinBlazor\\ProjetCaveVin\\ProjetCaveVin.csproj",
+              "RelativeToolTip": "ProjetCaveVin\\ProjetCaveVin.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-03-09T07:22:00.794Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Home.razor",
+              "DocumentMoniker": "C:\\Users\\REDLER\\ProjetCaveVinBlazor\\ProjetCaveVin\\Pages\\Home.razor",
+              "RelativeDocumentMoniker": "ProjetCaveVin\\Pages\\Home.razor",
+              "ToolTip": "C:\\Users\\REDLER\\ProjetCaveVinBlazor\\ProjetCaveVin\\Pages\\Home.razor",
+              "RelativeToolTip": "ProjetCaveVin\\Pages\\Home.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-09T07:09:49.902Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
