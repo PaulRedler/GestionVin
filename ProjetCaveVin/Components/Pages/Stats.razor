@@ -1,122 +1,336 @@
 ﻿@page "/stats"
+
 @inject BouteilleRepository BouteilleRepository
 @inject HDRepository HDRepository
-<PageTitle>Statistiques et stock</PageTitle>
 
-<div class="page-card">
-    <div class="page-header">
-        <div>
-            <h1>Gestion des stocks</h1>
-            <div class="page-subtitle">Portage de `StatistiquesGrandMonarqueWindow`.</div>
+<PageTitle>Statistiques & Excellence - Grand Monarque</PageTitle>
+
+<div class="luxury-container">
+    <div class="gold-accent-line"></div>
+
+    <div class="container py-5">
+        <header class="d-flex justify-content-between align-items-end mb-5">
+            <div>
+                <h1 class="luxury-title">Inventaire & Statistiques</h1>
+                <p class="luxury-subtitle text-uppercase">Registre de prestige de la Cave</p>
+            </div>
+            <button class="btn-luxury-refresh" @onclick="LoadData">
+                <span class="refresh-icon">↻</span> Actualiser
+            </button>
+        </header>
+
+        <div class="luxury-tabs mb-4">
+            <button class="tab-item @(ActiveTab == "stock" ? "active" : "")" @onclick='() => SetActiveTab("stock")'>Gestion des Flux</button>
+            <button class="tab-item @(ActiveTab == "zones" ? "active" : "")" @onclick='() => SetActiveTab("zones")'>Valeurs par Zone</button>
+            <button class="tab-item @(ActiveTab == "history" ? "active" : "")" @onclick='() => SetActiveTab("history")'>Historique de Cave</button>
         </div>
-        <div class="action-row">
-            <button class="secondary-btn" @onclick="LoadData">Actualiser</button>
-        </div>
-    </div>
 
-    <div class="tabs-row">
-        <button class="tab-btn @(ActiveTab == "stock" ? "active" : "")" @onclick='() => SetActiveTab("stock")'>Gestion du stock</button>
-        <button class="tab-btn @(ActiveTab == "zones" ? "active" : "")" @onclick='() => SetActiveTab("zones")'>Zones et valeurs</button>
-        <button class="tab-btn @(ActiveTab == "history" ? "active" : "")" @onclick='() => SetActiveTab("history")'>Historique</button>
-    </div>
+        <div class="luxury-content-card">
+            @if (ActiveTab == "stock")
+            {
+                <div class="row g-5">
+                    <div class="col-lg-8 border-end-luxury">
+                        <div class="search-wrapper mb-4">
+                            <label class="field-label-gold">Recherche de flacons</label>
+                            <input class="luxury-input" placeholder="Nom du vin ou code emplacement..." @bind="SearchText" @bind:event="oninput" />
+                        </div>
 
-    @if (ActiveTab == "stock")
-    {
-        <div class="two-column">
-            <section>
-                <div class="field-label">Recherche (nom ou emplacement)</div>
-                <input class="input-field" @bind="SearchText" @bind:event="oninput" />
+                        <div class="table-responsive luxury-table-container">
+                            <table class="luxury-table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Appellation</th>
+                                        <th>Millésime</th>
+                                        <th>Localisation</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (Bouteille bouteille in FilteredBouteilles)
+                                    {
+                                        <tr class="@(SelectedBouteille?.Id == bouteille.Id ? "record-selected" : "")"
+                                            @onclick="@(() => SelectBouteille(bouteille))">
+                                            <td class="id-cell">#@bouteille.Id</td>
+                                            <td class="fw-bold">@bouteille.Libelle</td>
+                                            <td><span class="badge-millesime">@bouteille.Millesime</span></td>
+                                            <td class="location-cell">@bouteille.Code_Emplacement</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
 
-                <table class="table-shell" style="margin-top: 0.65rem;">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Vin</th>
-                            <th>Millesime</th>
-                            <th>Emplacement</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (Bouteille bouteille in FilteredBouteilles)
-                        {
-                            <tr class="@(SelectedBouteille?.Id == bouteille.Id ? "record-selected" : string.Empty)"
-                                @onclick="@(() => SelectBouteille(bouteille))">
-                                <td>@bouteille.Id</td>
-                                <td>@bouteille.Libelle</td>
-                                <td>@bouteille.Millesime</td>
-                                <td>@bouteille.Code_Emplacement</td>
+                    <div class="col-lg-4">
+                        <div class="movement-box">
+                            <h4 class="gold-title mb-4">Mouvement de Cave</h4>
+
+                            <div class="selection-detail mb-4">
+                                <label class="label-small">Bouteille sélectionnée</label>
+                                <div class="selected-wine-name">@(SelectedBouteille?.Libelle ?? "Aucune sélection")</div>
+                                <div class="selected-wine-loc">Localisation actuelle : @(SelectedBouteille?.Code_Emplacement ?? "—")</div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="field-label-gold">ID Nouvel Emplacement</label>
+                                <input class="luxury-input mb-2" placeholder="Ex: 102" @bind="TargetEmplacementIdText" />
+                            </div>
+
+                            @if (!string.IsNullOrEmpty(StatusMessage))
+                            {
+                                <div class="status-alert @(StatusSuccess ? "success" : "error")">
+                                    @StatusMessage
+                                </div>
+                            }
+
+                            <button class="btn-luxury-action w-100" @onclick="MoveBottle">
+                                Confirmer le déplacement
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            }
+            else if (ActiveTab == "zones")
+            {
+                <div class="table-responsive">
+                    <table class="luxury-table">
+                        <thead>
+                            <tr>
+                                <th>Zone d'entreposage</th>
+                                <th>Quantité</th>
+                                <th class="text-end">Valeur Estimée</th>
                             </tr>
-                        }
-                    </tbody>
-                </table>
-            </section>
-
-            <section>
-                <div class="field-label">Bouteille selectionnee</div>
-                <div class="page-card" style="box-shadow:none; padding: 0.75rem;">
-                    <div><strong>@(SelectedBouteille?.Libelle ?? "---")</strong></div>
-                    <div>Actuel: @(SelectedBouteille?.Code_Emplacement ?? "---")</div>
+                        </thead>
+                        <tbody>
+                            @foreach (StatistiqueZone zone in StatsZones)
+                            {
+                                <tr>
+                                    <td class="fw-bold fs-5">@zone.NomZone</td>
+                                    <td>@zone.Quantite flacons</td>
+                                    <td class="text-end gold-price">@zone.ValeurTotale.ToString("C2")</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
                 </div>
-
-                <div class="field-label" style="margin-top: 0.65rem;">Nouvel ID emplacement</div>
-                <input class="input-field" @bind="TargetEmplacementIdText" />
-
-                <div class="status-msg @(StatusSuccess ? "ok-msg" : string.Empty)">@StatusMessage</div>
-                <div class="action-row">
-                    <button class="primary-btn" @onclick="MoveBottle">Confirmer deplacement</button>
+            }
+            else
+            {
+                <div class="table-responsive">
+                    <table class="luxury-table">
+                        <thead>
+                            <tr>
+                                <th>Référence</th>
+                                <th>Date du mouvement</th>
+                                <th>Sommelier</th>
+                                <th>Flacon</th>
+                                <th>Nouvelle Localisation</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (HistoriqueDeplacement historique in Historique)
+                            {
+                                <tr>
+                                    <td class="text-muted">#@historique.Id</td>
+                                    <td>@historique.DateDeplacement.ToString("dd MMM yyyy à HH:mm")</td>
+                                    <td>ID : @historique.IdUtilisateur</td>
+                                    <td>ID Bouteille : @historique.IdBouteille</td>
+                                    <td class="location-cell">Empl. @historique.IdEmplacement</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
                 </div>
-            </section>
+            }
         </div>
-    }
-    else if (ActiveTab == "zones")
-    {
-        <table class="table-shell">
-            <thead>
-                <tr>
-                    <th>Zone / Emplacement</th>
-                    <th>Quantite</th>
-                    <th>Valeur totale</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (StatistiqueZone zone in StatsZones)
-                {
-                    <tr>
-                        <td>@zone.NomZone</td>
-                        <td>@zone.Quantite</td>
-                        <td>@zone.ValeurTotale.ToString("C2")</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    }
-    else
-    {
-        <table class="table-shell">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Date</th>
-                    <th>Utilisateur</th>
-                    <th>Bouteille</th>
-                    <th>Emplacement</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (HistoriqueDeplacement historique in Historique)
-                {
-                    <tr>
-                        <td>@historique.Id</td>
-                        <td>@historique.DateDeplacement.ToString("dd/MM/yyyy HH:mm")</td>
-                        <td>@historique.IdUtilisateur</td>
-                        <td>@historique.IdBouteille</td>
-                        <td>@historique.IdEmplacement</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    }
+    </div>
 </div>
+
+<style>
+    /* Configuration Luxe & Hôtel */
+    .luxury-container {
+        min-height: 100vh;
+        background-color: #FDFCFB;
+        color: #2C2C2C;
+        font-family: 'Playfair Display', serif;
+    }
+
+    .gold-accent-line {
+        height: 5px;
+        background: linear-gradient(90deg, #B8860B 0%, #E3B448 50%, #B8860B 100%);
+    }
+
+    .luxury-title {
+        font-weight: 700;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        font-size: 2.2rem;
+        margin-bottom: 5px;
+    }
+
+    .luxury-subtitle {
+        color: #B8860B;
+        font-size: 0.9rem;
+        letter-spacing: 3px;
+    }
+
+    /* Tabs */
+    .luxury-tabs {
+        display: flex;
+        border-bottom: 1px solid #E0E0E0;
+        gap: 40px;
+    }
+
+    .tab-item {
+        background: none;
+        border: none;
+        padding: 15px 5px;
+        font-size: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: #888;
+        position: relative;
+        transition: 0.3s;
+    }
+
+        .tab-item.active {
+            color: #B8860B;
+            font-weight: 600;
+        }
+
+            .tab-item.active::after {
+                content: '';
+                position: absolute;
+                bottom: -1px;
+                left: 0;
+                width: 100%;
+                height: 2px;
+                background-color: #B8860B;
+            }
+
+    /* Cards */
+    .luxury-content-card {
+        background: white;
+        border: 1px solid #F0F0F0;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.03);
+        padding: 40px;
+        border-radius: 0;
+    }
+
+    /* Tables */
+    .luxury-table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0 10px;
+    }
+
+        .luxury-table th {
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            color: #B8860B;
+            padding: 15px;
+            border-bottom: 2px solid #FDFCFB;
+        }
+
+        .luxury-table td {
+            background-color: #FDFCFB;
+            padding: 15px;
+            border-top: 1px solid #F0F0F0;
+            border-bottom: 1px solid #F0F0F0;
+            transition: 0.2s;
+        }
+
+        .luxury-table tr:hover td {
+            background-color: #F8EFE0;
+            cursor: pointer;
+        }
+
+    .record-selected td {
+        background-color: #F8EFE0 !important;
+        border-color: #B8860B !important;
+    }
+
+    .badge-millesime {
+        background: #2C2C2C;
+        color: #E3B448;
+        padding: 4px 10px;
+        font-weight: bold;
+    }
+
+    /* Inputs & Buttons */
+    .luxury-input {
+        width: 100%;
+        border: none;
+        border-bottom: 1px solid #CCC;
+        padding: 10px 0;
+        outline: none;
+        font-style: italic;
+        transition: 0.3s;
+    }
+
+        .luxury-input:focus {
+            border-bottom: 1px solid #B8860B;
+        }
+
+    .field-label-gold {
+        color: #B8860B;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .btn-luxury-action {
+        background-color: #2C2C2C;
+        color: #E3B448;
+        border: none;
+        padding: 15px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+        .btn-luxury-action:hover {
+            background-color: #1a1a1a;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+    .btn-luxury-refresh {
+        background: transparent;
+        border: 1px solid #B8860B;
+        color: #B8860B;
+        padding: 8px 20px;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        letter-spacing: 1px;
+    }
+
+    .gold-price {
+        color: #B8860B;
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+
+    .status-alert {
+        padding: 10px;
+        font-size: 0.85rem;
+        margin-bottom: 15px;
+    }
+
+        .status-alert.success {
+            color: #28a745;
+            border-left: 3px solid #28a745;
+            background: #f4fff6;
+        }
+
+        .status-alert.error {
+            color: #dc3545;
+            border-left: 3px solid #dc3545;
+            background: #fff4f4;
+        }
+</style>
 
 @code
 {

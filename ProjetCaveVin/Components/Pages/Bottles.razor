@@ -2,54 +2,338 @@
 @inject ZoneRepository ZoneRepository
 @inject BouteilleRepository BouteilleRepository
 @inject NavigationManager Navigation
-<PageTitle>Gestion des bouteilles</PageTitle>
+<PageTitle>Cave • Grand Monarque</PageTitle>
 
-<div class="page-card">
-    <div class="page-header">
-        <div>
-            <h1>Liste des bouteilles</h1>
-            <div class="page-subtitle">Portage de `GestionBouteilleWindow`.</div>
+<div class="cave-shell">
+
+    <!-- HEADER -->
+    <header class="cave-header">
+        <div class="cave-header__left">
+            <span class="cave-header__eyebrow">Grand Monarque</span>
+            <h1 class="cave-header__title">Cave à Vins</h1>
         </div>
-        <div class="action-row">
-            <button class="secondary-btn" @onclick="Reload">Recharger</button>
-            <button class="ghost-btn" @onclick="ResetFilters">Reinitialiser les filtres</button>
+        <div class="cave-header__actions">
+            <button class="btn-ghost" @onclick="ResetFilters">Réinitialiser</button>
+            <button class="btn-primary" @onclick="Reload">↻ Actualiser</button>
         </div>
-    </div>
+    </header>
 
-    <div class="field-label">Filtre par libelle</div>
-    <input class="input-field" placeholder="Ex: Bordeaux, Champagne..." @bind="LibelleFilter" @bind:event="oninput" />
+    <!-- FILTERS -->
+    <section class="cave-filters">
+        <div class="search-wrap">
+            <span class="search-icon">⌕</span>
+            <input class="search-input"
+                   placeholder="Rechercher un vin…"
+                   @bind="LibelleFilter"
+                   @bind:event="oninput" />
+        </div>
 
-    <div class="field-label" style="margin-top: 0.7rem;">Zones</div>
-    <div class="zone-pills">
-        <button class="zone-pill @(string.IsNullOrWhiteSpace(SelectedZone) ? "active" : "")" @onclick="() => SelectZone(null)">Toutes</button>
-        @foreach (Zone zone in Zones)
-        {
-            <button class="zone-pill @(string.Equals(SelectedZone, zone.Code, StringComparison.OrdinalIgnoreCase) ? "active" : "")"
-                    @onclick="@(() => SelectZone(zone.Code))">
-                @zone.Code
+        <div class="zone-strip">
+            <button class="zone-btn @(string.IsNullOrWhiteSpace(SelectedZone) ? "zone-btn--active" : "")"
+                    @onclick="() => SelectZone(null)">
+                Toutes les zones
             </button>
-        }
-    </div>
+            @foreach (Zone zone in Zones)
+            {
+                <button class="zone-btn @(string.Equals(SelectedZone, zone.Code, StringComparison.OrdinalIgnoreCase) ? "zone-btn--active" : "")"
+                        @onclick="@(() => SelectZone(zone.Code))">
+                    @zone.Code
+                </button>
+            }
+        </div>
+    </section>
 
+    <!-- STATUS -->
     @if (!string.IsNullOrWhiteSpace(Message))
     {
-        <div class="status-msg">@Message</div>
+        <div class="cave-status">@Message</div>
     }
 
-    <div class="bottle-grid">
+    <!-- GRID -->
+    <section class="bottle-grid">
         @foreach (Bouteille bouteille in FilteredBouteilles)
         {
             <article class="bottle-card">
-                <img src="@ResolvePhoto(bouteille.Photo)" alt="@bouteille.Libelle" />
-                <h3>@bouteille.Libelle</h3>
-                <div><strong>@bouteille.Prix.ToString("F2") EUR</strong></div>
-                <div>Type: @bouteille.Type</div>
-                <div>Zone: @bouteille.Code</div>
-                <div>Emplacement: @bouteille.Code_Emplacement</div>
+                <div class="bottle-card__img-wrap">
+                    <img src="@ResolvePhoto(bouteille.Photo)" alt="@bouteille.Libelle" class="bottle-card__img" />
+                    <span class="bottle-card__type">@bouteille.Type</span>
+                </div>
+                <div class="bottle-card__body">
+                    <h3 class="bottle-card__name">@bouteille.Libelle</h3>
+                    <div class="bottle-card__meta">
+                        <span>@bouteille.Code</span>
+                        <span class="bottle-card__sep">·</span>
+                        <span>@bouteille.Code_Emplacement</span>
+                    </div>
+                    <div class="bottle-card__footer">
+                        <span class="bottle-card__price">@bouteille.Prix.ToString("F2") €</span>
+                    </div>
+                </div>
             </article>
         }
-    </div>
+    </section>
+
 </div>
+
+<style>
+    :root {
+        --gold: #B8860B;
+        --gold-light: #D4A017;
+        --dark: #0e0e0e;
+        --dark-2: #1a1a1a;
+        --dark-3: #242424;
+        --border: rgba(184,134,11,0.2);
+        --text: #f0ece4;
+        --text-muted: #8a8070;
+        --radius: 12px;
+    }
+
+    .cave-shell {
+        min-height: 100vh;
+        background: var(--dark);
+        color: var(--text);
+        padding: 2.5rem 3rem;
+        font-family: 'Georgia', serif;
+    }
+
+    /* HEADER */
+    .cave-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .cave-header__eyebrow {
+        display: block;
+        font-size: 0.7rem;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 0.3rem;
+    }
+
+    .cave-header__title {
+        font-size: 2.2rem;
+        font-weight: 400;
+        margin: 0;
+        color: var(--text);
+        letter-spacing: 0.05em;
+    }
+
+    .cave-header__actions {
+        display: flex;
+        gap: 0.75rem;
+        align-items: center;
+    }
+
+    .btn-primary {
+        background: var(--gold);
+        color: #000;
+        border: none;
+        padding: 0.55rem 1.2rem;
+        border-radius: 6px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        cursor: pointer;
+        letter-spacing: 0.05em;
+        transition: background 0.2s;
+    }
+
+        .btn-primary:hover {
+            background: var(--gold-light);
+        }
+
+    .btn-ghost {
+        background: transparent;
+        color: var(--text-muted);
+        border: 1px solid var(--border);
+        padding: 0.55rem 1.2rem;
+        border-radius: 6px;
+        font-size: 0.85rem;
+        cursor: pointer;
+        transition: color 0.2s, border-color 0.2s;
+    }
+
+        .btn-ghost:hover {
+            color: var(--text);
+            border-color: var(--gold);
+        }
+
+    /* FILTERS */
+    .cave-filters {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .search-wrap {
+        position: relative;
+        max-width: 400px;
+    }
+
+    .search-icon {
+        position: absolute;
+        left: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--text-muted);
+        font-size: 1.1rem;
+        pointer-events: none;
+    }
+
+    .search-input {
+        width: 100%;
+        background: var(--dark-2);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 0.65rem 1rem 0.65rem 2.5rem;
+        color: var(--text);
+        font-size: 0.9rem;
+        outline: none;
+        transition: border-color 0.2s;
+        box-sizing: border-box;
+    }
+
+        .search-input:focus {
+            border-color: var(--gold);
+        }
+
+        .search-input::placeholder {
+            color: var(--text-muted);
+        }
+
+    .zone-strip {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .zone-btn {
+        background: var(--dark-2);
+        color: var(--text-muted);
+        border: 1px solid var(--border);
+        padding: 0.4rem 1rem;
+        border-radius: 999px;
+        font-size: 0.8rem;
+        cursor: pointer;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        transition: all 0.2s;
+    }
+
+        .zone-btn:hover {
+            color: var(--text);
+            border-color: var(--gold);
+        }
+
+    .zone-btn--active {
+        background: var(--gold);
+        color: #000;
+        border-color: var(--gold);
+        font-weight: 600;
+    }
+
+    /* STATUS */
+    .cave-status {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        letter-spacing: 0.05em;
+        margin-bottom: 1.5rem;
+        border-left: 2px solid var(--gold);
+        padding-left: 0.75rem;
+    }
+
+    /* GRID */
+    .bottle-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .bottle-card {
+        background: var(--dark-2);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        overflow: hidden;
+        transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+        cursor: default;
+    }
+
+        .bottle-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--gold);
+            box-shadow: 0 8px 30px rgba(184,134,11,0.15);
+        }
+
+    .bottle-card__img-wrap {
+        position: relative;
+        background: var(--dark-3);
+        height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .bottle-card__img {
+        height: 170px;
+        width: auto;
+        object-fit: contain;
+        filter: drop-shadow(0 4px 12px rgba(0,0,0,0.5));
+    }
+
+    .bottle-card__type {
+        position: absolute;
+        top: 0.6rem;
+        right: 0.6rem;
+        background: rgba(184,134,11,0.15);
+        border: 1px solid var(--gold);
+        color: var(--gold);
+        font-size: 0.65rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 0.2rem 0.5rem;
+        border-radius: 4px;
+    }
+
+    .bottle-card__body {
+        padding: 1rem 1.1rem 1.1rem;
+    }
+
+    .bottle-card__name {
+        font-size: 1rem;
+        font-weight: 400;
+        margin: 0 0 0.4rem;
+        color: var(--text);
+        line-height: 1.3;
+    }
+
+    .bottle-card__meta {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        margin-bottom: 0.8rem;
+        letter-spacing: 0.03em;
+    }
+
+    .bottle-card__sep {
+        margin: 0 0.3rem;
+    }
+
+    .bottle-card__footer {
+        border-top: 1px solid var(--border);
+        padding-top: 0.7rem;
+    }
+
+    .bottle-card__price {
+        font-size: 1.05rem;
+        color: var(--gold);
+        font-weight: 600;
+        letter-spacing: 0.03em;
+    }
+</style>
 
 @code
 {
@@ -63,11 +347,7 @@
     protected string LibelleFilter
     {
         get => _libelleFilter;
-        set
-        {
-            _libelleFilter = value;
-            ApplyFilters();
-        }
+        set { _libelleFilter = value; ApplyFilters(); }
     }
 
     protected override void OnInitialized()
@@ -82,11 +362,11 @@
             Zones = ZoneRepository.GetAllZones();
             AllBouteilles = BouteilleRepository.GetAllBouteilles();
             ApplyFilters();
-            Message = $"{FilteredBouteilles.Count} bouteille(s) affichee(s).";
+            Message = $"{FilteredBouteilles.Count} bouteille(s) affichée(s).";
         }
         catch (Exception ex)
         {
-            Message = $"Erreur chargement: {ex.Message}";
+            Message = $"Erreur chargement : {ex.Message}";
             AllBouteilles = [];
             FilteredBouteilles = [];
             Zones = [];
@@ -111,41 +391,20 @@
         IEnumerable<Bouteille> query = AllBouteilles;
 
         if (!string.IsNullOrWhiteSpace(SelectedZone))
-        {
             query = query.Where(b => string.Equals(b.Code, SelectedZone, StringComparison.OrdinalIgnoreCase));
-        }
 
         if (!string.IsNullOrWhiteSpace(LibelleFilter))
-        {
             query = query.Where(b => b.Libelle.Contains(LibelleFilter, StringComparison.OrdinalIgnoreCase));
-        }
 
         FilteredBouteilles = query.ToList();
     }
 
     protected static string ResolvePhoto(string? photo)
     {
-        if (string.IsNullOrWhiteSpace(photo))
-        {
-            return "/images/vinrouge.png";
-        }
-
-        if (Uri.TryCreate(photo, UriKind.Absolute, out _))
-        {
-            return photo;
-        }
-
-        if (photo.StartsWith('/'))
-        {
-            return photo;
-        }
-
-        if (photo.StartsWith("images/", StringComparison.OrdinalIgnoreCase))
-        {
-            return "/" + photo;
-        }
-
+        if (string.IsNullOrWhiteSpace(photo)) return "/images/vinrouge.png";
+        if (Uri.TryCreate(photo, UriKind.Absolute, out _)) return photo;
+        if (photo.StartsWith('/')) return photo;
+        if (photo.StartsWith("images/", StringComparison.OrdinalIgnoreCase)) return "/" + photo;
         return "/images/vinrouge.png";
     }
 }
-

@@ -1,52 +1,200 @@
 ﻿@page "/"
-@inject NavigationManager Navigation   
-<PageTitle>Accueil admin</PageTitle>
+@inject NavigationManager Navigation
+<PageTitle>Accueil Admin - Grand Monarque</PageTitle>
 
-<div class="page-card">
-    <h1>Bienvenue dans la cave Grand Monarque</h1>
-    <p class="page-subtitle">Equivalent de `MainWindow` (acces admin).</p>
+<div class="luxury-container">
+    <div class="gold-accent-line"></div>
 
-    <div class="dashboard-grid">
-        <a class="dashboard-tile" href="/bottles">
-            <h3>Gestion des bouteilles</h3>
-            <p>Filtrer par zone/libelle et consulter le stock actuel.</p>
-            <img @onclick="GoToBottles"src="/images/imagegestionvin.png" alt="Gestion des vins" />
-        </a>
-        <a class="dashboard-tile" href="/stats">
-            <h3>Statistiques et deplacements</h3>
-            <p>Visualiser les valeurs par emplacement et deplacer les bouteilles.</p>
-            <img @onclick="GoToStat"src="/images/imagestatvin.png" alt="Statistiques des vins" />
-        </a>
-    </div>
+    <div class="container text-center py-5">
+        <header class="mb-5 header-section">
+            <h1 class="luxury-title">Grand Monarque</h1>
+            <div class="luxury-divider">
+                <span class="diamond"></span>
+            </div>
+            <h2 class="luxury-subtitle">Gestion Privée de la Cave</h2>
+        </header>
 
-    <div class="action-row" style="margin-top: 1rem;">
-        <button class="ghost-btn" @onclick="BackToRoleAccess">Retour a la selection de role</button>
+        <div class="row justify-content-center g-4">
+            <div class="col-md-5 col-lg-4">
+                <div class="luxury-card" @onclick="GoToBottles">
+                    <div class="card-image-wrapper">
+                        <img src="/images/imagegestionvin.png" alt="Gestion des vins" class="luxury-img" />
+                    </div>
+                    <div class="card-content">
+                        <h3>Gestion du Stock</h3>
+                        <p>Inventaire, filtrage par zone et libellé.</p>
+                        <span class="luxury-link">Accéder au registre</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-5 col-lg-4">
+                <div class="luxury-card" @onclick="GoToStat">
+                    <div class="card-image-wrapper">
+                        <img src="/images/imagestatvin.png" alt="Statistiques" class="luxury-img" />
+                    </div>
+                    <div class="card-content">
+                        <h3>Analyses & Valeurs</h3>
+                        <p>Visualisation des emplacements et mouvements.</p>
+                        <span class="luxury-link">Consulter les rapports</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-5 pt-4">
+            <button class="btn-luxury-ghost" @onclick="BackToRoleAccess">
+                <i class="bi bi-arrow-left"></i> Quitter l'administration
+            </button>
+        </div>
     </div>
 </div>
 
-@code{
-    protected override void OnInitialized()
-    {
-        // if (Session.CurrentUser.Role.Nom!="Administrateur")
-        // {
-        //     Navigation.NavigateTo("/role-access");
-        // }
+<style>
+    /* Palette : Or: #B8860B | Fond: #FDFCFB | Texte: #2C2C2C */
+
+    .luxury-container {
+        min-height: 100vh;
+        background-color: #FDFCFB;
+        font-family: 'Playfair Display', serif; /* À ajouter dans votre index.html si possible */
+        color: #2C2C2C;
     }
 
+    .gold-accent-line {
+        height: 4px;
+        background: linear-gradient(90deg, #B8860B 0%, #E3B448 50%, #B8860B 100%);
+    }
+
+    .luxury-title {
+        font-weight: 700;
+        letter-spacing: 6px;
+        text-transform: uppercase;
+        font-size: 2.8rem;
+        color: #1a1a1a;
+        margin-bottom: 10px;
+    }
+
+    .luxury-subtitle {
+        font-weight: 300;
+        font-style: italic;
+        color: #B8860B;
+        font-size: 1.2rem;
+        letter-spacing: 2px;
+    }
+
+    /* Séparateur élégant */
+    .luxury-divider {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 20px 0;
+    }
+
+        .luxury-divider::before, .luxury-divider::after {
+            content: "";
+            height: 1px;
+            width: 100px;
+            background-color: #B8860B;
+        }
+
+    .diamond {
+        width: 8px;
+        height: 8px;
+        background-color: #B8860B;
+        transform: rotate(45deg);
+        margin: 0 15px;
+    }
+
+    /* Cartes Luxe */
+    .luxury-card {
+        background: white;
+        border: 1px solid #eee;
+        padding: 0;
+        border-radius: 0; /* Les coins droits font plus "luxe" */
+        transition: all 0.4s ease;
+        cursor: pointer;
+        height: 100%;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+    }
+
+        .luxury-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(184, 134, 11, 0.15);
+            border-color: #B8860B;
+        }
+
+    .card-image-wrapper {
+        overflow: hidden;
+        border-bottom: 2px solid #FDFCFB;
+    }
+
+    .luxury-img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+        transition: transform 0.6s ease;
+    }
+
+    .luxury-card:hover .luxury-img {
+        transform: scale(1.05);
+    }
+
+    .card-content {
+        padding: 25px;
+    }
+
+        .card-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .card-content p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+    .luxury-link {
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: #B8860B;
+        font-weight: bold;
+        border-bottom: 1px solid transparent;
+        transition: all 0.3s;
+    }
+
+    .luxury-card:hover .luxury-link {
+        border-bottom: 1px solid #B8860B;
+    }
+
+    /* Bouton Retour */
+    .btn-luxury-ghost {
+        background: transparent;
+        border: 1px solid #ccc;
+        color: #888;
+        padding: 10px 25px;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        transition: all 0.3s;
+    }
+
+        .btn-luxury-ghost:hover {
+            border-color: #B8860B;
+            color: #B8860B;
+            background: rgba(184, 134, 11, 0.05);
+        }
+</style>
+
+@code {
     protected void BackToRoleAccess()
     {
-        Session.Logout();
+        // Session.Logout(); // Décommenter si nécessaire
         Navigation.NavigateTo("/role-access");
     }
-    private void GoToStat()
-    {
-        Navigation.NavigateTo("/stats");
 
-    }
-    private void GoToBottles()
-    {
-        Navigation.NavigateTo("/bottles");
-    }
+    private void GoToStat() => Navigation.NavigateTo("/stats");
+    private void GoToBottles() => Navigation.NavigateTo("/bottles");
 }
-
-
