@@ -1,0 +1,99 @@
+@page "/inscription"
+@inject UtilisateurRepository UserRepo
+@inject NavigationManager Navigation
+
+<div>
+
+    <input type="text" placeholder="Nom" @bind="Nom" class="form-control mb-2" />
+    <input type="text" placeholder="Prénom" @bind="Prenom" class="form-control mb-2" />
+    <input type="email" placeholder="Email" @bind="Email" class="form-control mb-2" />
+    <input type="password" placeholder="Mot de passe" @bind="Password" class="form-control mb-2" />
+
+    <button @onclick="InscrireUtilisateur">
+        Submit
+    </button>
+
+</div>
+<button class="btn btn-link mt-2 text-decoration-none fw-normal"
+        style="color: #B8860B; font-size: 14px;"
+        @onclick="Retour">
+     Retour
+</button>
+
+@code 
+{
+    private string _nom;
+    private string _prenom;
+    private string _email;
+    private string _password;
+    private string _message;
+    private string _role;
+    public List<string> Roles { get; } = new List<string> { "Administrateur", "Sommelier", "Serveur" };
+
+
+    public string Nom
+    {
+        get => _nom;
+        set { _nom = value; }
+    }
+
+    public string Prenom
+    {
+        get => _prenom;
+        set { _prenom = value; }
+    }
+
+    public string Email
+    {
+
+        get => _email;
+        set { _email = value; }
+    }
+
+    public string Password
+    {
+        get => _password;
+        set { _password = value; }
+    }
+
+    public string Message
+    {
+        get => _message;
+        set { _message = value;  }
+    }
+
+    public string Role
+    {
+        get => _role;
+        set { _role = value; }
+    }
+
+
+    private void InscrireUtilisateur()
+    {
+        if (string.IsNullOrWhiteSpace(Nom) || string.IsNullOrWhiteSpace(Prenom) ||
+            string.IsNullOrWhiteSpace(Email) || string.IsNullOrWhiteSpace(Password))
+        {
+            Message = "Veuillez remplir tous les champs.";
+            return;
+        }
+
+        try
+        {
+            UserRepo.InsertUtilisateur(Nom, Prenom, Email, Password, "Serveur");
+            Message = "Utilisateur créé avec succès !";
+
+            // Reset champs
+            Nom = Prenom = Email = Password = string.Empty;
+        }
+        catch (Exception ex)
+        {
+            Message = $"Erreur lors de l'insertion : {ex.Message}";
+        }
+        Navigation.NavigateTo("/login-admin");
+    }
+    private void Retour()
+    {
+        Navigation.NavigateTo("/login-admin");
+    }
+}
