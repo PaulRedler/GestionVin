@@ -1,0 +1,9 @@
+﻿@page "/gg"
+
+<h1>@Compteur</h1>
+<button @onclick="Click">CLIC</button>
+
+@code {
+    int Compteur = 0;
+    void Click() { Compteur++; }
+}

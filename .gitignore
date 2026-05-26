@@ -1,0 +1,46 @@
+# Build results
+bin/
+obj/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# NuGet
+*.nupkg
+packages/
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Rider
+.idea/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# MAUI
+**/*.Designer.cs.bak
+**/appsettings.Development.json
+
+
+# Android
+**/android/assets/
+**/*.apk
+**/*.aab
+
+# iOS
+**/*.ipa
+**/*.dSYM.zip
+**/*.dSYM
+
+# Logs
+*.log
+crash-*.txt
